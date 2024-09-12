@@ -7,7 +7,7 @@ class PDF extends FPDF
     // Header
     function Header()
     {
-        $this->SetFont('Arial', 'B', 12);
+        $this->SetFont('Arial', 'B', 14);
         $this->Cell(0, 10, 'Laporan Pengadaan Aset Desa Sukamukti', 0, 1, 'C');
         $this->Ln(5);
     }
@@ -25,7 +25,7 @@ class PDF extends FPDF
     {
         // Header
         $this->SetFont('Arial', 'B', 10);
-        $w = array(25, 35, 25, 15, 35, 25, 25, 20, 35, 35); 
+        $w = array(25, 70, 50, 30, 35, 25, 30, 30, 40, 40); 
         for($i=0; $i<count($header); $i++) {
             $this->Cell($w[$i], 7, $header[$i], 1, 0, 'C');
         }
@@ -49,21 +49,21 @@ class PDF extends FPDF
     }
 }
 
-// Ambil data dari database
+// Mengambil data dari database
 $sql = "SELECT * FROM asset_usage";
 $result = $conn->query($sql);
 
-// Siapkan data untuk PDF
+// Menyiapkan data untuk PDF
 $data = [];
 while ($row = $result->fetch_assoc()) {
     $data[] = $row;
 }
 
 // Header tabel
-$header = array('Kode Aset', 'Nama Barang', 'Merk', 'Volume', 'Bukti Kepemilikan', 'Tahun Beli', 'Harga', 'Kondisi', 'Penanggung Jawab', 'Ruang Penempatan');
+$header = array('Kode Aset', 'Nama Aset', 'Merk', 'Volume', 'Bukti Kepemilikan', 'Tahun', 'Harga', 'Kondisi', 'Penanggung Jawab', 'Ruang Penempatan');
 
-// Buat objek PDF dalam mode Landscape
-$pdf = new PDF('L', 'mm', 'A4'); 
+// PDF dalam bentuk Landscape
+$pdf = new PDF('L', 'mm', 'A3'); 
 $pdf->SetFont('Arial', '', 14);
 $pdf->AddPage();
 $pdf->AssetTable($header, $data);

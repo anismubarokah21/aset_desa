@@ -46,11 +46,11 @@ class PDF extends FPDF
     }
 }
 
-// Ambil data dari database
+// Mengambil data dari database
 $sql = "SELECT * FROM employees";
 $result = $conn->query($sql);
 
-// Siapkan data untuk PDF
+// Menyiapkan data untuk PDF
 $data = [];
 while ($row = $result->fetch_assoc()) {
     $data[] = $row;
@@ -59,7 +59,7 @@ while ($row = $result->fetch_assoc()) {
 // Header tabel
 $header = array('Nama', 'Jabatan', 'Alamat', 'Tempat, Tanggal Lahir', 'Kontak', 'Nomor SK', 'TMT');
 
-// Buat objek PDF dalam mode Landscape
+// PDF dalam bentuk Landscape
 $pdf = new PDF('L', 'mm', 'A4');
 $pdf->SetFont('Arial', '', 14);
 $pdf->AddPage();

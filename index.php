@@ -23,7 +23,7 @@
         </div>
     </main>
     <footer>
-        <p>&copy; 2024 Aplikasi Aset Desa Sukamukti. All rights reserved.</p>
+        <p>&copy; 2024 Aplikasi Aset Desa Sukamukti.</p>
     </footer>
 </body>
 </html>

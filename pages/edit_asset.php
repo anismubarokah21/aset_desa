@@ -1,7 +1,7 @@
 <?php
 include '../db.php';
 
-// Handle update operation
+
 if (isset($_POST['update']) && isset($_POST['edit_id'])) {
     $edit_id = $_POST['edit_id'];
     $code = $_POST['code'];
@@ -15,15 +15,15 @@ if (isset($_POST['update']) && isset($_POST['edit_id'])) {
     $responsible = $_POST['responsible'];
     $placement = $_POST['placement'];
 
-    // Prepare update query
-    $sql = "UPDATE asset_usage 
+
+$sql = "UPDATE asset_usage 
             SET code=?, name=?, brand=?, volume=?, ownership_proof=?, year_bought=?, acquisition_value=?, `condition`=?, responsible=?, placement=? 
             WHERE id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('ssssssssssi', $code, $name, $brand, $volume, $ownership_proof, $year_bought, $acquisition_value, $condition, $responsible, $placement, $edit_id);
 
     if ($stmt->execute()) {
-        // Redirect after successful update
+
         header("Location: usage.php");
         exit;
     } else {
@@ -31,11 +31,11 @@ if (isset($_POST['update']) && isset($_POST['edit_id'])) {
     }
 }
 
-// Handle form pre-fill
+
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $edit_id = $_GET['id'];
 
-    // Prepare select query
+
     $sql = "SELECT * FROM asset_usage WHERE id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $edit_id);
@@ -44,7 +44,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        // Pre-fill variables
+
         $code = $row['code'];
         $name = $row['name'];
         $brand = $row['brand'];
@@ -83,7 +83,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             <label for="code">Kode Aset:</label>
             <input type="text" id="code" name="code" value="<?php echo htmlspecialchars($code); ?>" required>
             
-            <label for="name">Nama Barang:</label>
+            <label for="name">Nama Aset:</label>
             <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($name); ?>" required>
             
             <label for="brand">Merk:</label>
@@ -95,7 +95,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             <label for="ownership_proof">Bukti Kepemilikan (No Kuitansi):</label>
             <input type="text" id="ownership_proof" name="ownership_proof" value="<?php echo htmlspecialchars($ownership_proof); ?>" required>
             
-            <label for="year_bought">Tahun Beli:</label>
+            <label for="year_bought">Tahun:</label>
             <input type="number" id="year_bought" name="year_bought" value="<?php echo htmlspecialchars($year_bought); ?>" min="1900" max="2100" required>
             
             <label for="acquisition_value">Nilai Perolehan (Harga):</label>

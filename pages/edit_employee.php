@@ -1,16 +1,16 @@
 <?php
 include('../db.php');
 
-// Periksa koneksi
+// koneksi database
 if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
 
-$employee = null; // Inisialisasi variabel employee
+$employee = null;
 
-// Tangani pembaruan data
+// Pembaruan data
 if (isset($_POST['update'])) {
-    $id = intval($_POST['id']); // Pastikan ID adalah integer
+    $id = intval($_POST['id']);
     $name = $conn->real_escape_string($_POST['name']);
     $position = $conn->real_escape_string($_POST['position']);
     $address = $conn->real_escape_string($_POST['address']);
@@ -22,7 +22,7 @@ if (isset($_POST['update'])) {
     $sql = "UPDATE employees SET name='$name', position='$position', address='$address', birth_details='$birth_details', contact='$contact', sk_number='$sk_number', tmt='$tmt' WHERE id='$id'";
     
     if ($conn->query($sql) === TRUE) {
-        header('Location: employees.php'); // Redirect setelah update berhasil
+        header('Location: employees.php');
         exit();
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
@@ -31,7 +31,7 @@ if (isset($_POST['update'])) {
 
 // Ambil data karyawan untuk ditampilkan di form
 if (isset($_GET['id'])) {
-    $id = intval($_GET['id']); // Pastikan ID adalah integer
+    $id = intval($_GET['id']);
     $result = $conn->query("SELECT * FROM employees WHERE id = $id");
     
     if ($result && $result->num_rows > 0) {

@@ -1,7 +1,7 @@
 <?php
 include '../db.php';
 
-// Pastikan `id` ada dan valid
+
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $delete_id = $_GET['id'];
 
@@ -11,7 +11,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $stmt->bind_param('i', $delete_id);
 
     if ($stmt->execute()) {
-        // Redirect setelah penghapusan berhasil
+
         header("Location: usage.php");
         exit;
     } else {

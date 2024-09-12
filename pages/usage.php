@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $sql = "INSERT INTO asset_usage (code, name, brand, volume, ownership_proof, year_bought, acquisition_value, `condition`, responsible, placement) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    // Menggunakan prepared statements untuk menghindari SQL Injection
+
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('ssssssssss', $code, $name, $brand, $volume, $ownership_proof, $year_bought, $acquisition_value, $condition, $responsible, $placement);
 
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             <label for="code">Kode Aset:</label>
             <input type="text" id="code" name="code" required>
             
-            <label for="name">Nama Barang:</label>
+            <label for="name">Nama Aset:</label>
             <input type="text" id="name" name="name" required>
             
             <label for="brand">Merk:</label>
@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             <label for="ownership_proof">Bukti Kepemilikan (No Kuitansi):</label>
             <input type="text" id="ownership_proof" name="ownership_proof" required>
             
-            <label for="year_bought">Tahun Beli:</label>
+            <label for="year_bought">Tahun:</label>
             <input type="number" id="year_bought" name="year_bought" min="1900" max="2100" required>
             
             <label for="acquisition_value">Nilai Perolehan (Harga):</label>
@@ -103,11 +103,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             echo "<table>";
             echo "<tr>
                     <th>Kode Aset</th>
-                    <th>Nama Barang</th>
+                    <th>Nama Aset</th>
                     <th>Merk</th>
                     <th>Volume</th>
                     <th>Bukti Kepemilikan</th>
-                    <th>Tahun Beli</th>
+                    <th>Tahun</th>
                     <th>Harga</th>
                     <th>Kondisi</th>
                     <th>Penanggung Jawab</th>
